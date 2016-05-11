@@ -2,7 +2,9 @@ var PieChart = function() {
 	var width = 1000,
 		height = 540,
 		radius = Math.min(width, height) / 2,
-		colorRange = [];
+		colorRange = ['#0000b3','#0000cc','#1a1aff','#6666ff','#9999ff','#b3b3ff','#ccccff'],
+		category = 'letter',
+		category_values = 'size';
 
 
 	
@@ -17,12 +19,12 @@ var PieChart = function() {
 		.innerRadius(0);
 
 	var labelArc = d3.svg.arc()
-					.outerRadius(radius / 2)
-					.innerRadius(radius / 2);
+					.outerRadius(radius - 40)
+					.innerRadius(radius - 40);
 
 	var pie = d3.layout.pie()
 					.sort(null)
-					.value(function(d) {return d.population; });
+					.value(function(d) {return d[category_values]; });
 
 
 
@@ -42,30 +44,20 @@ var PieChart = function() {
 
 			g.append("path")
 				.attr("d", arc)
-				.style("fill", function(d) {return color(d.data.age); });
+				.style("fill", function(d) {return color(d.data[category]); });
 
 			g.append("text")
 				.attr("transform", function(d) {return "translate(" + labelArc.centroid(d) + ")"; })
 				.attr("dy", ".35em")
-				.text(function(d) {return d.data.age; });
+				.text(function(d) {return d.data[category]; });
 		})
 	};
 
-//	Potential functions
-	// width
-	// height
-	// color.range
-	// age
-	// population
 	chart.width = function(value) {
 		if(!arguments.length) {
 			return width;
 		}
-		console.log(width)
-		console.log(radius)
 		width = value;
-		console.log(width)
-		console.log(radius)
 		return this;
 	};
 
@@ -89,10 +81,25 @@ var PieChart = function() {
 		if(!arguments.length) {
 			return colorRange;
 		}
-		//console.log(colorRange)
 		colorRange = value;
-		//console.log(colorRange)
 		return this;
-	}
+	};
+
+	chart.category = function(value) {
+		if(!arguments.length) {
+			return category;
+		}
+		category = value;
+		return this;
+	};
+
+	chart.category_values = function(value) {
+		if(!arguments.length) {
+			return category_values;
+		}
+		category_values = value;
+		return this;
+	};
+
 	return chart;
 }

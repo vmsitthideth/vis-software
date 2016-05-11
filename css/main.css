@@ -1,10 +1,20 @@
 @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css);
 
 .arc text {
-  font: 10px sans-serif;
+  font-size: 11px;
+  font: sans-serif;
+  font-weight: bold;
   text-anchor: middle;
 }
 
 .arc path {
   stroke: white;
+}
+
+#title {
+	text-align: center;
+}
+
+#myDiv {
+	text-align: center;
 }
