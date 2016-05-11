@@ -27,7 +27,7 @@ The code enclosed in the PieChart.js file will allow you to create pie charts wi
 	myChart.colorRange(['red','white','blue']);
 
 	//	Re-call myChart function on chartWrapper
-	chartWrapper.datum(newDataSet).call(myChart);
+	chartWrapper.call(myChart);
 
 ```
 
@@ -64,8 +64,9 @@ The code enclosed in the PieChart.js file will allow you to create pie charts wi
 > Sets the current array of colorRange to `array` and returns the colorRange.  The `array` must be a set of colors.
 
 
-Example given:
 ```javascript
+//	Example given:
+
 	Chart.colorRange(['red','white','blue']);
 ```
 
@@ -76,10 +77,10 @@ Example given:
 > Sets the current string of category to `string` and returns the category.  This will be the label of the pie slices.
 
 
-Example given:
 ```javascript
+//	Example given:
 	
-	//	Given data
+	//	Test data
 	var data = [
 	{letter: 'U', size: 27}
 	];
@@ -94,10 +95,10 @@ Example given:
 > Sets the current string of category_range to `string` and returns the category_range.  This will be the value contained in the pie slices.
 
 
-Example given:
 ```javascript
+//	Example given:
 
-	//	Given data
+	//	Test data
 	var data = [
 	{letter: 'U', size: 27}
 	];
