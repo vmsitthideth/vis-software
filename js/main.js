@@ -48,6 +48,6 @@ $(function() {
 	//	Change the colorRange to Green, Orange, Blue, Red
 	myChart.colorRange(['green','orange','blue','red']);
 
-	//call myChart
+	//	Re-call myChart function on chartWrapper
 	chartWrapper.datum(newDataSet).call(myChart);
 });
