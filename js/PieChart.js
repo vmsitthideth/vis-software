@@ -1,27 +1,33 @@
 var PieChart = function() {
 	var width = 1000,
 		height = 540,
-		radius = Math.min(width, height) / 2;
+		radius = Math.min(width, height) / 2,
+		colorRange = [];
 
+
+	
+
+	var chart = function(selection) {
+		selection.each(function(data) {
 	var color = d3.scale.ordinal()
-					.range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+			.range(colorRange);
 
 	var arc = d3.svg.arc()
 		.outerRadius(radius - 10)
 		.innerRadius(0);
 
 	var labelArc = d3.svg.arc()
-					.outerRadius(radius - 40)
-					.innerRadius(radius - 40);
+					.outerRadius(radius / 2)
+					.innerRadius(radius / 2);
 
 	var pie = d3.layout.pie()
 					.sort(null)
 					.value(function(d) {return d.population; });
 
-	
 
-	var chart = function(selection) {
-		selection.each(function(data) {
+
+
+
 			var svg = d3.select(this).append("svg")
 					.attr("width", width)
 					.attr("height", height)
@@ -55,7 +61,11 @@ var PieChart = function() {
 		if(!arguments.length) {
 			return width;
 		}
+		console.log(width)
+		console.log(radius)
 		width = value;
+		console.log(width)
+		console.log(radius)
 		return this;
 	};
 
@@ -67,7 +77,22 @@ var PieChart = function() {
 		return this;
 	};
 
+	chart.radius = function(value) {
+		if(!arguments.length) {
+			return radius;
+		}
+		radius = value;
+		return this;
+	};
 
-
+	chart.colorRange = function(value) {
+		if(!arguments.length) {
+			return colorRange;
+		}
+		//console.log(colorRange)
+		colorRange = value;
+		//console.log(colorRange)
+		return this;
+	}
 	return chart;
 }
